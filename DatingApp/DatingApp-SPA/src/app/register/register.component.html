@@ -1,0 +1,112 @@
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+    <h2 class="text-center text-primary">Sign Up</h2>
+    <hr>
+
+    <div class="form-group">
+        <label class="control-label" style="margin-right:10px">I am a: </label>
+        <label class="radio-inline">
+          <input class="mr-3" type="radio" value="male" formControlName="gender">Male
+        </label>
+        <label class="radio-inline ml-3">
+          <input class="mr-3" type="radio" value="female" formControlName="gender">Female
+        </label>
+    </div>
+
+    <div class="form-group">
+        <input type="text" class="form-control" 
+        [ngClass]="{'is-invalid': registerForm.controls['username'].touched && registerForm.controls['username'].invalid,
+                    'is-valid': registerForm.controls['username'].touched && registerForm.controls['username'].valid}"
+        formControlName="username" 
+        placeholder="UserName">
+        <ul class="text-danger list-unstyled" *ngIf="registerForm.controls['username'].touched && registerForm.controls['username'].invalid">
+            <li *ngFor="let error of getValidationMessages(registerForm.controls['username'],'UserName')">
+                {{error}}
+            </li>
+        </ul>
+    </div>
+
+    <div class="form-group">
+        <input type="text" class="form-control" 
+        [ngClass]="{'is-invalid': registerForm.controls['knownAs'].touched && registerForm.controls['knownAs'].invalid,
+                    'is-valid': registerForm.controls['knownAs'].touched && registerForm.controls['knownAs'].valid}"
+        formControlName="knownAs" 
+        placeholder="Known as">
+        <ul class="text-danger list-unstyled" *ngIf="registerForm.controls['knownAs'].touched && registerForm.controls['knownAs'].invalid">
+            <li *ngFor="let error of getValidationMessages(registerForm.controls['knownAs'],'Known as')">
+                {{error}}
+            </li>
+        </ul>
+    </div>
+
+    <div class="form-group">
+        <input type="text" class="form-control" 
+        [ngClass]="{'is-invalid': registerForm.controls['dateOfBirth'].touched && registerForm.controls['dateOfBirth'].invalid,
+                    'is-valid': registerForm.controls['dateOfBirth'].touched && registerForm.controls['dateOfBirth'].valid}"
+        formControlName="dateOfBirth" 
+        placeholder="Date of Birth" bsDatepicker [bsConfig]="bsConfig">
+        <ul class="text-danger list-unstyled" *ngIf="registerForm.controls['dateOfBirth'].touched && registerForm.controls['dateOfBirth'].invalid">
+            <li *ngFor="let error of getValidationMessages(registerForm.controls['dateOfBirth'],'Date of Birth')">
+                {{error}}
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="form-group">
+        <input type="text" class="form-control" 
+        [ngClass]="{'is-invalid': registerForm.controls['city'].touched && registerForm.controls['city'].invalid,
+                    'is-valid': registerForm.controls['city'].touched && registerForm.controls['city'].valid}"
+        formControlName="city" 
+        placeholder="City">
+        <ul class="text-danger list-unstyled" *ngIf="registerForm.controls['city'].touched && registerForm.controls['city'].invalid">
+            <li *ngFor="let error of getValidationMessages(registerForm.controls['city'],'City')">
+                {{error}}
+            </li>
+        </ul>
+    </div>
+
+    <div class="form-group">
+        <input type="text" class="form-control" 
+        [ngClass]="{'is-invalid': registerForm.controls['country'].touched && registerForm.controls['country'].invalid,
+                    'is-valid': registerForm.controls['country'].touched && registerForm.controls['country'].valid}"
+        formControlName="country" 
+        placeholder="Country">
+        <ul class="text-danger list-unstyled" *ngIf="registerForm.controls['country'].touched && registerForm.controls['country'].invalid">
+            <li *ngFor="let error of getValidationMessages(registerForm.controls['country'],'Country')">
+                {{error}}
+            </li>
+        </ul>
+    </div>
+
+    <div class="form-group">
+        <input type="password" class="form-control" 
+        [ngClass]="{'is-invalid': registerForm.controls['password'].touched && registerForm.controls['password'].invalid,
+                    'is-valid': registerForm.controls['password'].touched && registerForm.controls['password'].valid}"
+        formControlName="password" 
+        placeholder="Password">
+        <ul class="text-danger list-unstyled" *ngIf="registerForm.controls['password'].touched && registerForm.controls['password'].invalid">
+            <li *ngFor="let error of getValidationMessages(registerForm.controls['password'],'Password')">
+                {{error}}
+            </li>
+        </ul>
+    </div>
+
+    <div class="form-group">
+        <input type="password" class="form-control" 
+        [ngClass]="{'is-invalid': registerForm.controls['confirmPassword'].touched && registerForm.controls['confirmPassword'].invalid,
+                    'is-valid': registerForm.controls['confirmPassword'].touched && registerForm.controls['confirmPassword'].valid}"
+        formControlName="confirmPassword" 
+        placeholder="Confirm Password">
+        <ul class="text-danger list-unstyled" *ngIf="registerForm.controls['confirmPassword'].touched && registerForm.controls['confirmPassword'].invalid">
+            <li *ngFor="let error of getValidationMessages(registerForm.controls['confirmPassword'],'Confirm Password')">
+                {{error}}
+            </li>
+        </ul>
+    </div>
+
+    <div class="text-center form-group">
+        <button type="submit" class="btn btn-success mr-2" [disabled]="!registerForm.valid">Register</button>
+        <button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button>
+    </div>
+
+</form>
